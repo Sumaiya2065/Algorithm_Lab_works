@@ -1,0 +1,89 @@
+package Huffman.Code;
+
+import java.util.*;
+import java.util.Scanner;
+
+public class HuffmanMain {
+	static int totfre=0;
+	static int hufffre=0;
+	static int n;
+	public static void PrintChar(HuffmanNode node,String s,int dep,char[] ar,int []fre) {
+		if(node==null) {
+			return;
+			
+		}
+		if(node.left==null && node.right==null && Character.isLetter(node.c)) {
+			System.out.println(node.c+":"+s);
+			for(int i=0;i<n;i++) {
+				if(ar[i]==node.c) {
+					hufffre+=dep*fre[i];
+					
+				}
+			}
+			
+		}
+		PrintChar(node.left,s+"0",dep+1,ar,fre);
+		PrintChar(node.right,s+"1",dep+1,ar,fre);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter total character: ");
+		 n=sc.nextInt();
+		 sc.nextLine();
+		char[] ar=new char[n];
+		System.out.println("enter character of the node: ");
+		for(int i=0;i<n;i++) {
+			ar[i]=sc.next().charAt(0);
+		}
+		System.out.println("enter total frequency: ");
+		int []fre=new int[n];
+		for(int i=0;i<n;i++) {
+			fre[i]=sc.nextInt();
+		}
+		HuffmanNode root=null;
+		PriorityQueue<HuffmanNode>pq=new PriorityQueue<>(n,new HuffComparator());
+		for(int i=0;i<n;i++) {
+			HuffmanNode ob=new HuffmanNode( );
+			ob.data=fre[i];
+			ob.c=ar[i];
+			totfre+=fre[i];
+			ob.left=null;
+			ob.right=null;
+			
+			pq.add(ob);
+			
+			
+			
+			
+		}
+		while(pq.size()>1) {
+			HuffmanNode node1=pq.peek();
+			
+			pq.poll();
+			HuffmanNode node2=pq.peek( );
+	
+			pq.poll();
+			HuffmanNode f=new HuffmanNode( );
+			f.data=node1.data+node2.data;
+			f.left=node1;
+			f.right=node2;
+			f.c='_';
+			pq.add(f);
+			root=f;
+			
+		}
+		
+		
+		PrintChar(root," ",0,ar,fre);
+		int ascii=totfre*8;
+		System.out.print("huffman frequency:"+hufffre+"");
+		double com=(hufffre*100)/ascii;
+		System.out.print("compressed:"+ com);
+		
+		
+
+	}
+
+}
