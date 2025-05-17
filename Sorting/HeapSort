@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void max_Heapify(int ar[], int node, int n) {
+    int largest = node;
+    int left = 2 * node;
+    int right = 2 * node + 1;
+
+    if (left <= n && ar[left] > ar[largest]) {
+        largest = left;
+    }
+    if (right <= n && ar[right] > ar[largest]) {
+        largest = right;
+    }
+
+    if (largest != node) {
+        swap(ar[largest], ar[node]);
+        max_Heapify(ar, largest, n);
+    }
+}
+
+void heap_sort(int ar[], int n) {
+    for (int i = n; i > 1; i--) {
+        swap(ar[1], ar[i]);
+        max_Heapify(ar, 1, i - 1);
+    }
+}
+
+void build_max_heap(int ar[], int n) {
+    for (int i = n / 2; i >= 1; i--) {
+        max_Heapify(ar, i, n);
+    }
+    heap_sort(ar, n);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int ar[n + 1]; // Using 1-based indexing, so array size is n+1
+
+    for (int i = 1; i <= n; i++) {
+        cin >> ar[i];
+    }
+
+    build_max_heap(ar, n);
+
+    for (int i = 1; i <= n; i++) {
+        cout << ar[i] << " ";
+    }
+
+    return 0;
+}
+
