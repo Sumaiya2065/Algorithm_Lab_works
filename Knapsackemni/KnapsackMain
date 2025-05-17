@@ -1,0 +1,48 @@
+package Knapsack.emni;
+
+import java.util.*;
+
+public class KnapsackMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Knapsack>list=new ArrayList<>();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter total object : ");
+		int n=sc.nextInt();
+		sc.nextLine();
+		for(int i=0;i<n;i++) {
+			Knapsack ob=new Knapsack();
+			System.out.print("enter object: ");
+			ob.setObject(sc.nextInt());
+			System.out.print("enter profit: ");
+			ob.setProfit(sc.nextDouble());
+			System.out.print("enter weight: ");
+			ob.setWeight(sc.nextInt());
+			sc.nextLine();
+		
+			list.add(ob);
+
+	}
+		Collections.sort(list,new KnapsackComparator( ));
+		double max_profit=0.0;
+		int rem_w=15;
+		for(Knapsack x:list) {
+			if(rem_w>=x.getWeight()) {
+				rem_w-=x.getWeight();
+				max_profit+=x.getProfit();
+				
+			}
+			else {
+				double pre_unit=x.getProfit()/x.getWeight();
+				max_profit+=pre_unit*rem_w;
+				break;
+				
+			}
+		}
+		System.out.println(max_profit);
+	}
+}
+		
+
+
