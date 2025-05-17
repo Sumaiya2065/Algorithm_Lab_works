@@ -1,0 +1,15 @@
+package activity.Problem;
+
+import java.util.*;
+
+public class activityComparator implements Comparator<activityUser> {
+
+
+
+@Override
+public int compare(activityUser o1, activityUser o2) {
+	// TODO Auto-generated method stub
+	
+	return o1.getFinish()-o2.getFinish();
+}
+}
