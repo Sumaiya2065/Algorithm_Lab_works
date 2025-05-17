@@ -1,0 +1,45 @@
+package activity.Problem;
+
+import java.util.*;
+
+public class activityMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<activityUser>list=new ArrayList<>();
+		Scanner sc= new Scanner(System.in);
+		System.out.print("enter item list: ");
+		int n=sc.nextInt();
+		sc.nextLine();
+		for(int i=0;i<n;i++) {
+			//System.out.println("enter all values of "+(i+1)+"item");
+			
+			activityUser uu=new activityUser( );
+			System.out.print("enter item: ");
+			uu.setItem(sc.nextLine());
+			System.out.print("enter starttime: ");
+			uu.setStart(sc.nextInt( ));
+			System.out.print("enter FinishTime: ");
+			uu.setFinish(sc.nextInt( ));
+			sc.nextLine();
+			list.add(uu);
+			
+		}
+	
+	
+		Collections.sort(list,new activityComparator());
+		int lastfinish=-1;
+		
+		for(activityUser x:list) {
+			if(lastfinish<x.getStart()) {
+				 System.out.print(x.getItem()+" ");
+				 lastfinish=x.getFinish();
+			}
+			
+		}
+		
+		
+
+	}
+
+}
