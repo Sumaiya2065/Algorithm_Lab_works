@@ -1,0 +1,22 @@
+package B.F.S1;
+
+import java.util.Scanner;
+
+public class BFS {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc= new Scanner(System.in);
+		System.out.print("enter total vartices: ");
+		int n=sc.nextInt();
+		Graph graph=new Graph(n);
+		for(int i=0;i<n-1;i++) {
+			int u,v;
+			u=sc.nextInt( );
+			v=sc.nextInt();
+			graph.addEdge(u, v);
+		}
+		graph.bfs(0);
+	}
+
+}
