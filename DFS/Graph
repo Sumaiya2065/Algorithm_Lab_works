@@ -1,0 +1,36 @@
+package D.F.S;
+
+import java.util.*;
+
+public class Graph {
+	private int vartices;
+	private LinkedList<Integer>[] adj;
+	
+	public Graph(int vartices) {
+		this.vartices=vartices;
+		this.adj=new LinkedList[vartices];
+		for(int i=0;i<vartices;i++) {
+			adj[i]=new LinkedList<>();
+			
+		}
+		
+	}
+	public void addEdge(int u,int v) {
+		adj[u].add(v);
+	}
+	public void dfs(int start) {
+		boolean vis[]=new boolean[vartices];
+		dfsUntill(start,vis);
+		
+		
+	}
+	private void dfsUntill(int cur,boolean[]vis) {
+	vis[cur]=true;
+	System.out.print(cur+" ");
+	for(int child: adj[cur]) {
+		if(vis[child]==false) {
+			dfsUntill(child,vis);
+		}
+	}
+	}
+}
