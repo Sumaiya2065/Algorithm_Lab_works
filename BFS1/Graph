@@ -1,0 +1,40 @@
+package B.F.S1;
+
+import java.util.*;
+
+public class Graph {
+	private int vartices;
+	private LinkedList<Integer>[] adj;
+	public Graph(int vartices) {
+		this.vartices=vartices;
+		this.adj=new LinkedList[vartices];
+		for(int i=0;i<vartices;i++) {
+			adj[i]=new LinkedList<>();
+			
+		}
+			
+	}
+	
+	public void addEdge(int u,int v) {
+		adj[u].add(v);
+		
+	}
+	public void bfs(int start) {
+		boolean [ ]vis=new boolean[vartices];
+		Queue<Integer>qu=new LinkedList<>();
+		vis[start]=true;
+		qu.add(start);
+		while(!qu.isEmpty()) {
+			int cur=qu.peek();
+			System.out.print(cur+" ");
+			qu.poll();
+			for(int child:adj[cur]) {
+				if(vis[child]==true) {
+					qu.add(child);
+				}
+			}
+		}
+	}
+	
+	
+}
