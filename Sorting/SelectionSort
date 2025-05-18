@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main( ){
+   int n;
+   cin>>n;
+   int ar[n];
+   for(int i=0;i<n;i++){
+      cin>>ar[i];
+
+   }
+
+   for(int i=0;i<n-1;i++){
+      int min_in=i;
+
+   for(int j=i+1;j<n;j++){
+      if(ar[j]<ar[min_in]){
+         min_in=j;
+      }
+   }
+   if(min_in!=i){
+     int temp=ar[i];
+     ar[i]=ar[min_in];
+     ar[min_in]=temp;
+
+   }
+   }
+   for(int i=0;i<n;i++){
+      cout<<ar[i]<<" ";
+   }
+
+
+
+
+
+
+
+
+
+}
